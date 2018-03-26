@@ -1,0 +1,25 @@
+<h1>New game</h1>
+
+<div class="container">
+
+  <div class="letters">
+     <h2> <% @letters.each do |letter| %>
+    <%= letter.upcase %> -
+    <% end %></h2>
+  </div>
+
+  <div class="form">
+    <form action="/score" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :letters, @letters.join(",") %>
+      <%= hidden_field_tag :starttime, @starttime %>
+
+      Enter your longest word :
+      <input type="text" name="words" placeholder="Have a try!"><br>
+      <input type="submit" value="Submit">
+      <br>Last score : <%= cookies[:score] %>
+      <br>Top score : <%= cookies[:topscore] %>
+    </form>
+  </div>
+
+</div>
